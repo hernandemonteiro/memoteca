@@ -1,4 +1,4 @@
-# Dev Note
+# Memoteca
 
 Projeto de aprendizado!
 
@@ -8,7 +8,7 @@ de angular da escola de Front-End da Alura.
 Meu objetivo pessoal no curso foi melhorar minhas
 técnicas de desenvolvimento front-end expandindo meus, já então confortáveis, horizontes.
 
-# Memoteca
+# Angular version
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
