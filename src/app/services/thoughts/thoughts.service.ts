@@ -28,4 +28,8 @@ export class ThoughtsService {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+
+  edit(thought: Thought) {
+    return this.http.put(this.API + `/${thought.id}`, thought);
+  }
 }

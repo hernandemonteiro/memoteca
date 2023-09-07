@@ -5,6 +5,12 @@
       "author": "Hernande Monteiro",
       "model": "modelo1",
       "id": 1
+    },
+    {
+      "content": "Modificando pensamento!",
+      "author": "Hernande Monteiro",
+      "model": "modelo2",
+      "id": 2
     }
   ]
 }
