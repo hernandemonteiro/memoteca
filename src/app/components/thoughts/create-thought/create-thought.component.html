@@ -2,26 +2,43 @@
   <header class="header">
     <h2>Adicione um <br />pensamento novo:</h2>
   </header>
-  <form (submit)="submitForm($event)">
+  <form [formGroup]="form">
     <label for="pensamento">Pensamento:</label>
     <input
       type="textarea"
       class="input"
-      autofocus
+      formControlName="content"
       id="pensamento"
       name="pensamento"
-      [(ngModel)]="thought.content"
       placeholder="Digite seu pensamento"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('content')?.touched && form.get('content')?.errors"
+    >
+      Pensamento é obrigatório!
+    </div>
     <label for="autoria">Autoria ou fonte:</label>
     <input
       type="textarea"
+      formControlName="author"
       class="input"
       id="autoria"
       name="autoria"
-      [(ngModel)]="thought.author"
       placeholder="Digite a autoria ou fonte"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('author')?.touched && form.get('author')?.errors?.['required']"
+    >
+      Autoria é obrigatório!
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('author')?.touched && form.get('author')?.errors?.['minlength']"
+    >
+      Precisa ter no minimo 3 caracteres!
+    </div>
     <label for="modelo">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
@@ -29,9 +46,9 @@
           <input
             type="radio"
             id="modelo1"
+            formControlName="model"
             value="modelo1"
-            name="modelo-card"
-            [(ngModel)]="thought.model"
+            name="model"
           />
           <div class="custom-radio">
             <span></span>
@@ -42,10 +59,10 @@
         <div class="modelo modelo1 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
           <p class="conteudo">
-            {{ thought.content || "Exemplo de Pensamento!" }}
+            {{ form.get("content")?.value }}
           </p>
           <p class="autoria">
-            <b>{{ thought.author || "Dev!" }}</b>
+            <b>{{ form.get("author")?.value }}</b>
           </p>
         </div>
       </div>
@@ -54,9 +71,9 @@
           <input
             type="radio"
             id="modelo2"
+            formControlName="model"
             value="modelo2"
-            name="modelo-card"
-            [(ngModel)]="thought.model"
+            name="model"
           />
           <div class="custom-radio">
             <span></span>
@@ -67,10 +84,10 @@
         <div class="modelo modelo2 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo2.png" alt="Aspas azuis" />
           <p class="conteudo">
-            {{ thought.content || "Exemplo de Pensamento!" }}
+            {{ form.get("content")?.value }}
           </p>
           <p class="autoria">
-            <b>{{ thought.author || "Dev!" }}</b>
+            <b>{{ form.get("author")?.value }}</b>
           </p>
         </div>
       </div>
@@ -79,9 +96,9 @@
           <input
             type="radio"
             id="modelo3"
+            formControlName="model"
             value="modelo3"
-            name="modelo-card"
-            [(ngModel)]="thought.model"
+            name="model"
           />
           <div class="custom-radio">
             <span></span>
@@ -92,15 +109,21 @@
         <div class="modelo modelo3 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo3.png" alt="Aspas azuis" />
           <p class="conteudo">
-            {{ thought.content || "Exemplo de Pensamento!" }}
+            {{ form.get("content")?.value }}
           </p>
           <p class="autoria">
-            <b>{{ thought.author || "Dev!" }}</b>
+            <b>{{ form.get("author")?.value }}</b>
           </p>
         </div>
       </div>
       <div class="acoes">
-        <button class="botao">Salvar</button>
+        <button
+          [ngClass]="disableButton()"
+          [disabled]="!form.valid"
+          (click)="submitForm()"
+        >
+          Salvar
+        </button>
         <button routerLink="/" class="botao">Cancelar</button>
       </div>
     </div>

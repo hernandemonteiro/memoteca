@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Thought } from 'src/app/interfaces/iThoughts';
 import { Observable } from 'rxjs';
 
@@ -11,12 +11,21 @@ export class ThoughtsService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Thought[]> {
-    return this.http.get<Thought[]>(this.API);
+  list(page: number): Observable<Thought[]> {
+    const itemsPerPage = 6;
+    let params = new HttpParams()
+      .set('_page', page)
+      .set('_limit', itemsPerPage);
+
+    return this.http.get<Thought[]>(this.API, { params });
   }
 
   searchByID(id: number): Observable<Thought> {
     return this.http.get<Thought>(this.API + `/${id}`);
+  }
+
+  allItems() {
+    return this.http.get<Thought[]>(this.API);
   }
 
   create(thought: Thought): Observable<Thought> {
