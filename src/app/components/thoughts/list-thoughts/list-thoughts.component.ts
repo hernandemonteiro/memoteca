@@ -11,17 +11,19 @@ export class ListThoughtsComponent {
   thoughtsList: Thought[] = [];
   currentPage: number = 1;
   existMoreThoughts: boolean = true;
+  search: string = '';
+
   constructor(private service: ThoughtsService) {}
 
   ngOnInit(): void {
-    this.service.list(this.currentPage).subscribe((thoughts) => {
+    this.service.list(this.currentPage, '').subscribe((thoughts) => {
       this.thoughtsList = thoughts;
-      this.firstCheckToShowLoadMore();
+      this.checkToShowLoadMoreButton();
     });
   }
 
-  firstCheckToShowLoadMore() {
-    this.service.allItems().subscribe((thoughts) => {
+  checkToShowLoadMoreButton() {
+    this.service.allItems(this.search).subscribe((thoughts) => {
       if (thoughts.length <= this.thoughtsList.length) {
         this.existMoreThoughts = false;
       }
@@ -29,9 +31,18 @@ export class ListThoughtsComponent {
   }
 
   loadMoreThoughts() {
-    this.service.list(++this.currentPage).subscribe((thoughts) => {
+    this.service.list(++this.currentPage, '').subscribe((thoughts) => {
       this.thoughtsList.push(...thoughts);
-      if (!thoughts.length) this.existMoreThoughts = false;
+      this.checkToShowLoadMoreButton();
+    });
+  }
+
+  searchThoughts() {
+    this.existMoreThoughts = true;
+    this.currentPage = 1;
+    this.service.list(this.currentPage, this.search).subscribe((thoughts) => {
+      this.thoughtsList = thoughts;
+      this.checkToShowLoadMoreButton();
     });
   }
 }

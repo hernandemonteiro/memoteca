@@ -14,6 +14,7 @@ export class EditThoughtComponent {
     content: '',
     author: '',
     model: 'modelo1',
+    favorite: false,
   };
 
   constructor(

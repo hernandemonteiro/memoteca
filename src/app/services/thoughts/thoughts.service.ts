@@ -11,11 +11,15 @@ export class ThoughtsService {
 
   constructor(private http: HttpClient) {}
 
-  list(page: number): Observable<Thought[]> {
+  list(page: number, query: string): Observable<Thought[]> {
     const itemsPerPage = 6;
     let params = new HttpParams()
       .set('_page', page)
       .set('_limit', itemsPerPage);
+
+    if (query != '') {
+      params = params.set('q', query);
+    }
 
     return this.http.get<Thought[]>(this.API, { params });
   }
@@ -24,7 +28,11 @@ export class ThoughtsService {
     return this.http.get<Thought>(this.API + `/${id}`);
   }
 
-  allItems() {
+  allItems(query: string): Observable<Thought[]> {
+    if (query) {
+      const params = new HttpParams().set('q', query);
+      return this.http.get<Thought[]>(this.API, { params });
+    }
     return this.http.get<Thought[]>(this.API);
   }
 

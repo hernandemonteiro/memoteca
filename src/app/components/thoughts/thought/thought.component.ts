@@ -14,6 +14,7 @@ export class ThoughtComponent {
     content: '',
     author: '',
     model: 'modelo1',
+    favorite: false,
   };
 
   constructor(private service: ThoughtsService, private router: Router) {}
