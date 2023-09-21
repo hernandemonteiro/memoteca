@@ -17,5 +17,17 @@
     >
       <img src="/assets/imagens/icone-excluir.png" alt="Delete Button" />
     </button>
+    <button class="botao-favorito" (click)="changeFavorite()">
+      <img
+        src="/assets/imagens/icone-favorito-ativo.png"
+        *ngIf="thought.favorite"
+        alt="Delete Button"
+      />
+      <img
+        src="/assets/imagens/icone-favorito-inativo.png"
+        *ngIf="!thought.favorite"
+        alt="Delete Button"
+      />
+    </button>
   </div>
 </div>

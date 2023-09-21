@@ -25,4 +25,8 @@ export class ThoughtComponent {
     }
     return 'pensamento-p';
   }
+
+  changeFavorite() {
+    this.service.changeFavorite(this.thought).subscribe();
+  }
 }

@@ -46,7 +46,13 @@ export class ThoughtsService {
     });
   }
 
-  edit(thought: Thought) {
-    return this.http.put(this.API + `/${thought.id}`, thought);
+  edit(thought: Thought): Observable<Thought> {
+    return this.http.put<Thought>(this.API + `/${thought.id}`, thought);
+  }
+
+  changeFavorite(thought: Thought): Observable<Thought> {
+    thought.favorite = !thought.favorite;
+
+    return this.edit(thought);
   }
 }

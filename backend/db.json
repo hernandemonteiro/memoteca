@@ -4,37 +4,43 @@
       "content": "Area para o cliente trabalhar os insights de mercado na Stoich!",
       "author": "Hernande",
       "model": "modelo3",
-      "id": 4
+      "id": 4,
+      "favorite": true
     },
     {
       "content": "Indicativos do mercado como IPCA, IBOVESPA, CDI e outros na página inicial da Stoich, após login",
       "author": "Hernande",
       "model": "modelo1",
-      "id": 5
+      "id": 5,
+      "favorite": false
     },
     {
       "content": "Calculadora de IR e outras ferramentas dentro da plataforma dos assinantes",
       "author": "Hernande",
       "model": "modelo3",
-      "id": 6
+      "id": 6,
+      "favorite": false
     },
     {
       "content": "Na página de recomendados, todas as ações ou ativos que são recomendados para o perfil do cliente",
       "author": "Hernande",
       "model": "modelo2",
-      "id": 7
+      "id": 7,
+      "favorite": false
     },
     {
       "content": "Criar uma aba com um planejador financeiro para o cliente",
       "author": "Hernande",
       "model": "modelo2",
-      "id": 8
+      "id": 8,
+      "favorite": true
     },
     {
       "content": "Area de dicas e curiosidades sobre o mercado e o perfil atual (de investidor) do usuário",
       "author": "Hernande",
       "model": "modelo1",
-      "id": 9
+      "id": 9,
+      "favorite": true
     },
     {
       "content": "Roadmaps para diversas metas dos clientes, tudo isso em um painel bem elaborado!",
